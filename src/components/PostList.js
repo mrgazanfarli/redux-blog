@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Preloader from './Preloader';
 import Post from './Post';
-import jsonPlaceholder from '../apis/jsonPlaceholder';
 import { postStatuses } from '../constants';
 import { getPosts, handlePostsStatus } from '../actions';
 
@@ -11,8 +10,7 @@ class PostList extends React.Component {
     async componentDidMount() {
         this.props.handlePostsStatus(postStatuses.loading);
         try {
-            const response = await jsonPlaceholder.get('/posts');
-            this.props.getPosts(response.data);
+            await this.props.getPosts();
             this.props.handlePostsStatus(postStatuses.success);
         } catch{
             this.props.handlePostsStatus(postStatuses.error);

@@ -3,7 +3,7 @@ import { types, postStatuses } from '../constants';
 export const postsReducer = (state = [], action) => {
     switch (action.type) {
         case types.getPosts:
-            return [...state, ...action.payload];
+            return action.payload;
         default:
             return state;
     }
